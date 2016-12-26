@@ -413,6 +413,7 @@ _f.Frm.prototype.refresh = function(docname) {
 
 		// read only (workflow)
 		this.read_only = frappe.workflow.is_read_only(this.doctype, this.docname);
+		if (this.read_only) this.set_read_only(true);
 
 		// check if doctype is already open
 		if (!this.opendocs[this.docname]) {
@@ -886,7 +887,7 @@ _f.Frm.prototype.set_footnote = function(txt) {
 
 _f.Frm.prototype.add_custom_button = function(label, fn, group) {
 	// temp! old parameter used to be icon
-	if(group && group.indexOf("icon")!==-1) group = null;
+	if(group && group.indexOf("fa fa-")!==-1) group = null;
 	return this.page.add_inner_button(label, fn, group);
 }
 
